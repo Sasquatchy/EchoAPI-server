@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.raoul.persistence.MemberMapper">
+
+	<resultMap type="MemberVO" id="memberMap">
+		<id property="mno" column="mno" />
+		<result column="uid" property="uid" />
+		<result column="pw" property="pw" />
+		<result column="username" property="username" />
+		<result column="mobile" property="mobile" />
+		<result column="regDate" property="regDate"/>
+		<result column="updateDate" property="updateDate"/>
+		<collection property="authList" resultMap="authMap"></collection>
+	</resultMap>
+
+	<resultMap type="AuthVO" id="authMap">
+		<result property="uid" column="uid" />
+		<result property="auth" column="auth" />
+	</resultMap>
+
+	<select id="read" resultMap="memberMap">
+
+		select * from
+		echo_member 
+		where mno = #{mno}
+
+	</select>
+
+	<update id="update">
+		update echo_member set uid = #{uid}, pw =#{pw}, username =#{username},
+		mobile =#{mobile}
+		where mno = #{mno}
+	</update>
+
+</mapper>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.raoul.persistence.PhotoMapper">
+
+	   <insert id = "insert">
+	   insert into echo_photo (uuid, originalPhotoName, folderPath, bno, uid) 
+	   values (#{uuid}, #{originalPhotoName}, #{folderPath}, #{bno}, #{uid})
+	   
+	   </insert>
+
+	<insert id="insertList" >
+		insert into echo_photo (uuid, originalPhotoName, folderPath, bno, uid) 
+		values (#{uuid},
+				#{originalPhotoName},
+				#{folderPath},  
+				#{bno},
+				#{uid}
+				)
+		
+<!--	parameterType="java.util.List" 			
+<foreach item="item" index="index" collection="list" separator=",">
+			(
+				#{item.photoname}, 
+				#{item.path}, 
+				#{item.bno},
+				#{item.uid}
+			)
+			</foreach> -->
+	</insert>
+
+	<delete id="deleteList" parameterType="java.util.List">
+		delete from echo_photo where pno in (
+			<foreach item="item" index="index" collection="list" separator=",">
+				'#{item.pno}'
+			</foreach>
+		)
+	</delete>
+
+</mapper>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="org.raoul.persistence.BoardMapper">
+  
+	<sql id="searchCri">
+	  	<if test="map !=null">
+  		<where>
+	  	<foreach collection="map" index="key" item="val">
+	  	  <trim prefix="OR">
+		  	  <if test="key == 'B'.toString()">
+		  	  bno like concat('%', #{val} , '%')
+		  	  </if>
+		  	  <if test="key == 'U'.toString()">
+		  	  uid like concat('%', #{val} , '%')
+		  	  </if>
+		  	  <if test="key == 'S'.toString()">
+		  	  sent like concat('%', #{val} , '%')
+		  	  </if>
+	  	  </trim>
+	  	</foreach>
+	  	</where>
+	  	</if> 
+	
+	</sql>
+	
+  	<insert id="insert">
+  	insert into echo_board (uid) 
+  	values(#{uid})
+  	
+	  	<selectKey resultType="int" keyProperty="bno" order="AFTER">
+	        SELECT LAST_INSERT_ID()
+	    </selectKey>   
+  	
+  	</insert>
+  	  	
+  	<select id="select" resultType="BoardVO">
+  	select * from echo_board where bno = #{bno}
+  	</select>
+  	
+  	<update id="update">
+  	update echo_board set uid =#{uid}
+  	where bno = #{bno}
+  	</update>
+  	
+  	<select id="selectPage" resultType="BoardVO">
+  	select * from echo_board 
+  	
+	<include refid="searchCri"></include>
+  	
+  	order by bno desc limit #{skip}, #{amount}
+  	</select>
+  	
+  	<select id="selectPageCount" resultType="int">
+  	select count(bno) from echo_board 
+  	<include refid="searchCri"></include>
+  	</select>
+<!--   	
+  	<select id="search" resultType="BoardVO">
+  	select * from echo_board
+  	<if test="map !=null">
+  	<where>
+  	<foreach collection="map" index="key" item="val">
+  	  <trim prefix="OR">
+	  	  <if test="key == 'T'.toString()">
+	  	  title like concat('%', #{val} , '%')
+	  	  </if>
+	  	  <if test="key == 'C'.toString()">
+	  	  content like concat('%', #{val} , '%')
+	  	  </if>
+	  	  <if test="key == 'W'.toString()">
+	  	  writer like concat('%', #{val} , '%')
+	  	  </if>
+  	  </trim>
+  	</foreach>
+  	</where>
+  	</if>
+  	order by bno desc limit 0,20
+  	</select> -->
+  	
+  </mapper>

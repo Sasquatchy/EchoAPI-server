@@ -19,7 +19,7 @@ public class MemberController {
 
 	private MemberMapper mMapper;
 	
-	@RequestMapping("/getUser")
+	@RequestMapping("/getMember")
 	public MemberVO getMember(@RequestBody MemberVO vo) {
 		
 		log.info("param: " + vo);

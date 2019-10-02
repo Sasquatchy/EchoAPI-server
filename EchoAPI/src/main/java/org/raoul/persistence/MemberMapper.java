@@ -25,7 +25,7 @@ public interface MemberMapper {
 	@Delete("delete from echo_member where mno = #{mno}")
 	public int delete(Integer mno);
 	
-	@Select("select from echo_member where uid=#{uid} and pw=#{pw}")
+	@Select("select * from echo_member where uid=#{uid} and pw=#{pw}")
 	public MemberVO findByUidAndPw(String uid, String pw);
 	
 	@Select("select * from echo_member where mno>0 order by mno desc")

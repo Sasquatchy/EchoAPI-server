@@ -49,10 +49,6 @@ public class UploadController {
 	public ResponseEntity<String> register(@RequestParam("photo") MultipartFile[] uploadFiles,  BoardVO bvo)throws IOException {
 		
 		log.info("received");
-//		log.info(uploadFiles.toString());
-//		uploadFiles
-//		Arrays.stream(uploadFiles).forEach((MultipartFile f)->{log.info("a")});
-		
 		
 		
 		log.info(""+uploadFiles.length);
@@ -71,31 +67,4 @@ public class UploadController {
 
 	}
 	
-//	@ResponseBody
-//	@PostMapping(value="/board/register")
-//	public ResponseEntity<String> register( BoardVO vo, MultipartFile[] uploadFiles) {
-//
-//		log.info("=-=-=-POST register...");
-//		log.info("=-=-=-registering vo: " + vo);
-//
-//		if (vo.getAttachList() != null) {
-//			vo.getAttachList().forEach(attach -> log.info(attach.toString()));
-//		}
-//		log.info("=========================================================");
-//
-//		bService.add(vo);
-//		
-//		pService.upload(uploadFiles, rootPath, vo.getUid());
-//
-//		HttpHeaders headers = new HttpHeaders();
-//
-////		headers.add(headerName, headerValue);
-//		
-//		return new ResponseEntity<String>("success", headers, HttpStatus.OK);
-//
-//	}
-	
-	// https://private.tistory.com/59
-	// https://pangsblog.tistory.com/69
-	// https://preamtree.tistory.com/58
 }

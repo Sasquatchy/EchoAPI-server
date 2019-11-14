@@ -13,7 +13,7 @@ Echo는 멀리 떨어져 사는 가족들을 주 사용자로 하는 서비스�
 ## 다른 깃 저장소 링크
  * [The main API for the Echo, the IoT photo frame service with Spring Boot.](https://github.com/Sasquatchy/EchoAPI-server)
  
- * [The admin-server of our Echo service with Spring.](https://github.com/Sasquatchy/Project-Echo-server)
+ * [The front-end of our Echo service with React-Native.](https://github.com/bpond37/React-Native-project-Echo-mobile)
  
 ## 시연 영상 링크
  https://youtu.be/fvkCFcfVq28
